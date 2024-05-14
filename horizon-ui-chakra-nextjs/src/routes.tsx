@@ -47,6 +47,18 @@ const routes: IRoute[] = [
     path: '/inventory',
     icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
   },
+  {
+    name: 'Item Category',
+    layout: '/admin',
+    path: '/item-category',
+    icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
+  },
+  {
+    name: 'Item',
+    layout: '/admin',
+    path: '/item',
+    icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
+  },
 ];
 
 export default routes;

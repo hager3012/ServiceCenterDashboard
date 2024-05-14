@@ -1,0 +1,1 @@
+export { default as ItemCategoryDetails } from './ItemDetails';
