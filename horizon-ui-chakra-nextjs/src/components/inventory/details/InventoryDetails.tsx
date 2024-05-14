@@ -8,15 +8,15 @@ import { IInventory, IInventoryList } from "types/Inventory";
 import { getByIdInventory } from "libs/endpoints/inventory";
 
 const InventoryDetails = ({ id }: { id: string }) => {
-    const [employee, setEmployee] = useState<IInventoryList>({});
+    const [Inventory, setInventory] = useState({});
     const router = useRouter();
 
-    const fetchEmployee = async () => {
-        setEmployee(await getByIdInventory(id));
+    const fetchInventory = async () => {
+        setInventory(await getByIdInventory(id));
     }
 
     useEffect(() => {
-        fetchEmployee();
+        fetchInventory();
     }, [])
 
     const handleSubmit = async (formData: IInventory) => {
@@ -33,7 +33,7 @@ const InventoryDetails = ({ id }: { id: string }) => {
         {label: "Inventory Capacity", name: "inventoryCapacity", inputType: "Number", placeholder: "Inventory Capacity"},
       ],
       heading: "Back to Inventories",
-      data:employee,
+      data:Inventory,
       onSubmit: handleSubmit,
       
     }

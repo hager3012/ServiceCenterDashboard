@@ -10,7 +10,7 @@ import { getByIdInventory, updateInventory } from "libs/endpoints/inventory";
 
 
 const  InventoryUpdateForm = ({ id }: { id: string })  =>{
-    const [Inventory, setInventory] = useState<IInventory>({});
+    const [Inventory, setInventory] = useState({});
     const [message, setMessage] = useState<string>("");
     const router = useRouter();
     
@@ -51,7 +51,7 @@ const  InventoryUpdateForm = ({ id }: { id: string })  =>{
         fields={fields.fields} 
         heading={fields.heading}
         data={fields.data}
-        dropDownList={fields.dropDownList}
+        dropDownLists={fields.dropDownLists}
         onSubmit={handleSubmit}>
         </CompactForm>
       )
