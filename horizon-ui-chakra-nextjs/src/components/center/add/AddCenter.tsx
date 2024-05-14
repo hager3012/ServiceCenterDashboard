@@ -1,0 +1,53 @@
+'use client'
+import React, {useState, useEffect } from "react";
+import CompactForm, { IFieldsProps } from "components/common/compact-form/CompactForm";
+import { useRouter } from 'next/navigation';
+import { addCenter, getCenter } from "libs/endpoints/center";
+
+const AddCenter = () => {
+    const [Center, setCenter] = useState([]);
+    const router = useRouter();
+    const handleSubmit = async (formData: any) => {
+        await addCenter(formData);
+        router.push("/admin/center");
+    }
+
+    const fetchCenters = async () => {
+        let Centers = await getCenter();
+        setCenter(Centers);
+    }
+
+    let fields: IFieldsProps = {
+        title: "Add Center",
+        disabled: false,
+        fields: [
+            {label: "Name", name: "centerName", inputType: "text", placeholder: "Name"},
+            {label: "Opening Hours", name: "openingHours", inputType: "number", placeholder: "Opening Hours"},
+            {label: "Specialty", name: "specialty", inputType: "text", placeholder: "Specialty"}
+        ],
+        heading: "Create Center",
+        onSubmit: handleSubmit,
+       
+      }
+
+      useEffect(() => {
+        fetchCenters();
+      
+    },[]);
+
+      return (
+        <CompactForm
+        title={fields.title}
+        disabled={fields.disabled}
+        fields={fields.fields} 
+        heading={fields.heading}
+        data={fields.data}
+        dropDownLists={fields.dropDownLists}
+        onSubmit={handleSubmit}>
+        </CompactForm>
+      
+    )
+
+}
+
+export default AddCenter;
