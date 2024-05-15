@@ -42,6 +42,12 @@ const routes: IRoute[] = [
     icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
   },
   {
+    name: 'Product',
+    layout: '/admin',
+    path: '/product',
+    icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
+  },
+  {
     name: 'Inventory',
     layout: '/admin',
     path: '/inventory',
@@ -75,6 +81,12 @@ const routes: IRoute[] = [
     name: 'Branch',
     layout: '/admin',
     path: '/branch',
+    icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
+  },
+  {
+    name: 'Service Category',
+    layout: '/admin',
+    path: '/service-category',
     icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
   },
   {
