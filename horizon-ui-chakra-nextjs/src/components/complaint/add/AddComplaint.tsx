@@ -7,14 +7,14 @@ import CompactForm, {
 import { useRouter } from 'next/navigation';
 import { AddComplaint } from 'libs/endpoints/complaint';
 import { IComplaint } from 'types/Complaint';
-import { GetCustomer } from 'libs/endpoints/customer';
+import { getCustomer } from 'libs/endpoints/customer';
 
 const ComplaintAddForm = () => {
   const [Customer, setCustomer] = useState([]);
   const router = useRouter();
 
   const fetchCustomer = async () => {
-    let customers = await GetCustomer();
+    let customers = await getCustomer();
     setCustomer(customers);
   }
 
