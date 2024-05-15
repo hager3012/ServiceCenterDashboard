@@ -1,21 +1,21 @@
 export interface IBranchList
 {  
 	id: number;
-    branchName: string,
-    branchPhoneNumber: string,
-    emailAddress: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    gender: string,
     city: string,
     country: string,
 	postalCode: string,
-    centerName: string
+    status: string
 }
 export interface IBranch
 { 
-    branchName: string,
-    branchPhoneNumber: string,
+    contactFirstName: string,
+    contactLastName: string,
     emailAddress: string,
-    address: Address,
-    centerId: number
+    address: Address
 }
 export interface Address
 {
