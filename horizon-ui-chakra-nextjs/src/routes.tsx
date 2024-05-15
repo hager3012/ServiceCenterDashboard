@@ -65,6 +65,12 @@ const routes: IRoute[] = [
     path: '/department',
     icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
   },
+  {
+    name: 'Employee',
+    layout: '/admin',
+    path: '/employee',
+    icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
+  },
 ];
 
 export default routes;
