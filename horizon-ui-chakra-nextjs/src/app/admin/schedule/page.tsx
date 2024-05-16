@@ -38,7 +38,7 @@ const page = () => {
         setSchedules((prev) => ({
           headers: [
             { title: ' Id', field: 'id' },
-            { title: 'Agent Name', field: 'agentName' },
+            { title: 'Emplyee Name', field: 'employeeName' },
             { title: 'Start Time', field: 'startTime' },
             { title: 'End Time', field: 'endTime' },
             { title: 'Day', field: 'day' },

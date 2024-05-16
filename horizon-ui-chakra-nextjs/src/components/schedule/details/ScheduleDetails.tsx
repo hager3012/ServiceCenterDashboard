@@ -29,10 +29,7 @@ const ScheduleDetails = ({ id }: { id: string }) => {
     title: 'Schedule Details',
     disabled: true,
     fields: [
-        { label: 'Agent Name', name: 'agentName', inputType: 'text', placeholder: 'Doctor Id' },
-        { label: 'Agent Date Of Birth', name: 'DateOfBirth', inputType: 'text', placeholder: 'Agent Date Of Birth' },
-        { label: 'Agent Gender', name: 'agentGender', inputType: 'text', placeholder: 'Agent Gender' },
-        { label: 'Agent Phone', name: 'agentPhone', inputType: 'text', placeholder: 'Agent Phone' },
+        { label: 'Employee Name', name: 'employeeName', inputType: 'text', placeholder: 'Name' },
         { label: 'Start Time', name: 'startTime', inputType: 'text', placeholder: 'Start Time' },
         { label: 'End Time', name: 'endTime', inputType: 'text', placeholder: 'End Time' },
         { label: 'Day', name: 'day', inputType: 'text', placeholder: 'Day' },

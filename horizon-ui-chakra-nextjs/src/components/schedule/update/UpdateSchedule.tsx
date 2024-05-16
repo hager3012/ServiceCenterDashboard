@@ -7,24 +7,32 @@ import CompactForm, {
 import { useRouter } from 'next/navigation';
 import { IScheduleList } from 'types/Schedule';
 import { getByIdSchedule, updateSchedule } from 'libs/endpoints/schedule';
-import { getTimeslot } from 'libs/endpoints/timeslot';
+import { getTimeSlot } from 'libs/endpoints/timeSlot';
+import { getEmployee } from 'libs/endpoints/employee';
 
 const ScheduleUpdateForm = ({ id }: { id: string }) => {
   const [Schedule, setSchedule] = useState<IScheduleList>();
-  const [Timeslots, setTimeslots] = useState([]);
+  const [TimeSlot, setTimeslots] = useState([]);
+  const [Employees, setEmployee] = useState([]);
 
   const router = useRouter();
 
   const fetchSchedule = async () => 
     setSchedule(await getByIdSchedule(id));
   
-  // const fetchTimeslots = async () => {
-  //   let Timeslots = await getTimeslot();
-  //   setTimeslots(Timeslots);
-  // }
+  const fetchTimeslots = async () => {
+    let Timeslots = await getTimeSlot();
+    setTimeslots(Timeslots);
+  }
+
+  const fetchEmployee = async () => {
+    let employees = await getEmployee();
+    setEmployee(employees);
+  }
 
   useEffect(() => {
-   // fetchTimeslots();
+    fetchEmployee();
+    fetchTimeslots();
     fetchSchedule();
 }, [])
 
@@ -37,9 +45,10 @@ const ScheduleUpdateForm = ({ id }: { id: string }) => {
     title: 'Update Schedule ',
     disabled: false,
     fields: [
-      { label: 'Agent Id', name: 'agentId', inputType: 'text', placeholder: 'Agent Id' },
-      {label: "Timeslots", name: "timeSlotId", placeholder: "Timeslot",  inputType: 'number'},
-      
+    ],
+    dropDownLists:[
+        { label: "Employee", name: "employeeId", placeholder: "Employee", value: "id", displayName: "employeeFirstName", data: Employees},
+        { label: "Time Slot Id", name: "timeSlotId", placeholder: "Time Slot Id",  value: "id", displayName: "startTime", data: TimeSlot},
     ],
     
     heading: 'Update Schedule',
@@ -53,6 +62,7 @@ const ScheduleUpdateForm = ({ id }: { id: string }) => {
       disabled={fields.disabled}
       fields={fields.fields}
       heading={fields.heading}
+      dropDownLists={fields.dropDownLists}
       data={fields.data}
       onSubmit={handleSubmit}
     ></CompactForm>

@@ -125,6 +125,18 @@ const routes: IRoute[] = [
     path: '/servicePackage',
     icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
   },
+  {
+    name: 'Time Slot',
+    layout: '/admin',
+    path: '/timeSlot',
+    icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
+  },
+  {
+    name: 'Schedule',
+    layout: '/admin',
+    path: '/schedule',
+    icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
+  },
 ];
 
 export default routes;

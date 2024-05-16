@@ -3,27 +3,37 @@ import React, {useState, useEffect } from "react";
 import CompactForm, { IFieldsProps } from "components/common/compact-form/CompactForm";
 import { useRouter } from 'next/navigation';
 import { addSchedule, getSchedule } from "libs/endpoints/schedule";
+import { getEmployee } from "libs/endpoints/employee";
+import { getTimeSlot } from "libs/endpoints/timeSlot";
 
 
 const AddSchedule = () => {
-    const [Schedule, setSchedule] = useState([]);
+    const [Employee, setEmployee] = useState([]);
+    const [TimeSlots, setTimeSlots] = useState([]);
     const router = useRouter();
     const handleSubmit = async (formData: any) => {
-        await addSchedule(formData);
-        router.push("/admin/schedule");
+    await addSchedule(formData);
+    router.push("/admin/schedule");
     }
 
-    const fetchSchedules = async () => {
-        let Schedules = await getSchedule();
-        setSchedule(Schedules);
-    }
+    const fetchEmployee = async () => {
+        let employees = await getEmployee();
+        setEmployee(employees);
+      }
 
+      const fetchTimeslots = async () => {
+        let Timeslots = await getTimeSlot();
+        setTimeSlots(Timeslots);
+      }
+      
     let fields: IFieldsProps = {
         title: "Add Schedule",
         disabled: false,
         fields: [
-            { label: 'Agent Id', name: 'agentId', inputType: 'text', placeholder: 'Agent Id' },
-            {label: "Timeslot Id", name: "timeSlotId", placeholder: "Timeslot Id",  inputType: 'number'},
+        ],
+        dropDownLists:[
+            { label: "Employee", name: "employeeId", placeholder: "Employee", value: "id", displayName: "employeeFirstName", data: Employee},
+            { label: "Time Slot Id", name: "timeSlotId", placeholder: "Time Slot Id",  value: "id", displayName: "startTime", data: TimeSlots},
         ],
         heading: "Create Schedule",
         onSubmit: handleSubmit,
@@ -31,8 +41,8 @@ const AddSchedule = () => {
       }
 
       useEffect(() => {
-        fetchSchedules();
-      
+      fetchEmployee();
+      fetchTimeslots();
     },[]);
 
       return (
@@ -40,6 +50,7 @@ const AddSchedule = () => {
         title={fields.title}
         disabled={fields.disabled}
         fields={fields.fields} 
+        dropDownLists={fields.dropDownLists}
         heading={fields.heading}
         data={fields.data}
         onSubmit={handleSubmit}>
