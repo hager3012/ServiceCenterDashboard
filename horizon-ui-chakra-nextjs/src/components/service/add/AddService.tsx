@@ -9,6 +9,7 @@ import { AddService } from 'libs/endpoints/service';
 import { IService } from 'types/Service';
 import { getEmployee } from 'libs/endpoints/employee';
 import { getServiceCategory } from 'libs/endpoints/service-category';
+import { GetServicePackage } from 'libs/endpoints/servicePackage';
 
 const ServiceAddForm = () => {
   const [Employee, setEmployee] = useState([]);
@@ -27,7 +28,7 @@ const ServiceAddForm = () => {
   }
 
   const fetchPackages = async () => {
-    let Package = await getEmployee();
+    let Package = await GetServicePackage();
     setPackage(Package);
   }
 
