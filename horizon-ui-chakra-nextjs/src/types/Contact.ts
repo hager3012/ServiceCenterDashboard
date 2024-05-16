@@ -1,4 +1,4 @@
-export interface IBranchList
+export interface IContactList
 {  
 	id: number;
     firstName: string,
@@ -10,11 +10,12 @@ export interface IBranchList
 	postalCode: string,
     status: string
 }
-export interface IBranch
+export interface IContact
 { 
     contactFirstName: string,
     contactLastName: string,
-    emailAddress: string,
+    contactEmail: string,
+    gender: string,
     address: Address
 }
 export interface Address
@@ -22,4 +23,9 @@ export interface Address
     city: string,
     country: string,
 	postalCode: string,
+}
+
+export interface Status
+{
+    status: string
 }
