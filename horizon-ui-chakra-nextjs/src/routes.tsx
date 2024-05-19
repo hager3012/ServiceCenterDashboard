@@ -149,6 +149,12 @@ const routes: IRoute[] = [
     path: '/feedback',
     icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
   },
+  {
+    name: 'Order',
+    layout: '/admin',
+    path: '/order',
+    icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
+  },
 ];
 
 export default routes;
