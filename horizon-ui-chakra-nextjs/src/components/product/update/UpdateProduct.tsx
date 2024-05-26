@@ -51,9 +51,9 @@ const ProductUpdateForm = ({ id }: { id: string }) => {
         {label: "Price", name: "productPrice", inputType: "number", placeholder: "Price"}
     ],
     dropDownLists:[
-        {label: "Category", name: "productCategoryId", placeholder: "Category", value: "id", displayName: "categoryName", data: Category},
-        {label: "Brand", name: "productBrandId", placeholder: "Brand", value: "id", displayName: "brandName", data: Brand},
-     ],
+      {label: "Category", name: "productCategoryId", placeholder: "Category", value: "id", displayName: "categoryName", data: Category},
+      {label: "Brand", name: "productBrandId", placeholder: "Brand", value: "id", displayName: "brandName", data: Brand},
+   ],
     heading: 'Update Product',
     data: Product,
     onSubmit: handleSubmit,
