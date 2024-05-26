@@ -1,12 +1,13 @@
 'use client';
 import { useEffect, useState, useCallback } from 'react';
-import { Flex, Box, Text, useColorModeValue } from '@chakra-ui/react';
+import { Flex, Box, Text, useColorModeValue, Button, background } from '@chakra-ui/react';
 import Card from 'components/card/Card';
 import Menu from 'components/menu/MainMenu';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import CompactTable from 'components/common/compact-table/CompactTable';
-import { deleteContact, getByIdContact, getContact } from 'libs/endpoints/contact';
+import {  getContact, updateContact } from 'libs/endpoints/contact';
+import { IContact } from 'types/Contact';
 
 const Page = () => {
   const [Contacts, setContacts] = useState<{
@@ -16,20 +17,12 @@ const Page = () => {
   const textColor = useColorModeValue('secondaryGray.900', 'white');
   const router = useRouter();
 
-  // const viewContactDetails = async (id: string) => {
-  //   router.push(`/admin/contact/${id}`);
-  // };
-
-  const handleOnEdit = async (id: string) => {
-    await getByIdContact(id);
+  const handleOnEdit = async (body:IContact,status:string,id: string) => {
+    await updateContact(body,status,id);
     router.push(`/admin/contact/update/${id}`);
   };
 
-  // const handleDelete = async (id: string) => {
-  //   await deleteContact(id);
-  //   loadData();
-  //   router.push(`/admin/contact`);
-  // };
+  
 
   const loadData = useCallback(() => {
     getContact().then((data: any) => {
@@ -104,7 +97,7 @@ const Page = () => {
           <CompactTable
             headers={Contacts.headers}
             data={Contacts.data}
-            onUpdate={handleOnEdit}
+            onClick={handleOnEdit}
           />
         )}
       </Box>

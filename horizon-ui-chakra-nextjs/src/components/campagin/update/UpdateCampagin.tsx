@@ -8,7 +8,6 @@ import CompactForm, {
 import { useRouter } from 'next/navigation';
 import { ICampagin, ICampaginList } from 'types/Campagin';
 import { getByIdCampagin, updateCampagin } from 'libs/endpoints/campagin';
-import { getProduct } from 'libs/endpoints/product';
 
 const CampaginUpdateForm = ({ id }: { id: string }) => {
   const [Campagin, setCampagin] = useState<ICampaginList>();

@@ -18,7 +18,7 @@ export async function getProductBrand(): Promise<IProductBrandList[]> {
  * @returns a promise resolving to a success message upon successful deletion.
  */
 export async function deleteProductBrand(id: string): Promise<string> {
-  const data = await fetchApi<any>(`${Url}?id=${id}`, "DELETE");
+  const data = await fetchApi<any>(`${Url}/${id}`, "DELETE");
   return data.successMessage;
 }
 /**

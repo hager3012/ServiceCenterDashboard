@@ -25,7 +25,10 @@ export interface Address
 	postalCode: string,
 }
 
-export interface Status
+export enum Status
 {
-    status: string
+Lead , 
+Oppurtienty,
+Cancelled,
+Customer
 }

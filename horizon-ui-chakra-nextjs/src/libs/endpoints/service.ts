@@ -52,6 +52,6 @@ export async function GetByIdService(id: string): Promise<IServiceList> {
  * @returns A promise resolving to a success message upon successful deletion.
  */
 export async function DeleteService(id: string): Promise<string> {
-  const data = await fetchApi<any>(`${Url}?id=${id}`, "DELETE");
+  const data = await fetchApi<any>(`${Url}/${id}`, "DELETE");
   return data.successMessage;
 }
