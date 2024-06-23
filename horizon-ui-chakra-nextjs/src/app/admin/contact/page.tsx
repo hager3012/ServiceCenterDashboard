@@ -6,7 +6,7 @@ import Menu from 'components/menu/MainMenu';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import CompactTable from 'components/common/compact-table/CompactTable';
-import {  getContact, updateContact } from 'libs/endpoints/contact';
+import {  getContact } from 'libs/endpoints/contact';
 import { IContact } from 'types/Contact';
 
 const Page = () => {
@@ -17,10 +17,10 @@ const Page = () => {
   const textColor = useColorModeValue('secondaryGray.900', 'white');
   const router = useRouter();
 
-  const handleOnEdit = async (body:IContact,status:string,id: string) => {
-    await updateContact(body,status,id);
-    router.push(`/admin/contact/update/${id}`);
-  };
+  // const handleOnEdit = async (body:IContact,status:string,id: string) => {
+  //   await updateContact(body,status,id);
+  //   router.push(`/admin/contact/update/${id}`);
+  // };
 
   
 
@@ -29,14 +29,14 @@ const Page = () => {
       if (data) {
         setContacts((prev) => ({
           headers: [
-            {title: 'id', field: 'id' },
-            {title: "First Name", field: "firstName"},
-            {title: "Last Name", field: "lastName"},
+            {title: "First Name", field: "contactFirstName"},
+            {title: "Last Name", field: "contactLastName"},
+            {title: "Email Address", field: "contactEmail"},  
             {title: "Status", field: "status"},
             {title: "City", field: "city"},
             {title: "Country", field: "country"},  
             {title: "Postal Code", field: "postalCode"},
-            {title: "Email Address", field: "email"},        
+                 
           ],
           data: data,
         }));
@@ -97,7 +97,7 @@ const Page = () => {
           <CompactTable
             headers={Contacts.headers}
             data={Contacts.data}
-            onClick={handleOnEdit}
+            // onClick={handleOnEdit}
           />
         )}
       </Box>

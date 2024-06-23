@@ -9,7 +9,7 @@ const Url = `${baseUrl}/Contact`;
  */
 export async function getContact(): Promise<IContactList[]> {
   const data = await fetchApi<any>(Url, "GET");
-  let Contacts = data.value;
+  let Contacts = data.value.data;
   return Contacts;
 }
 
