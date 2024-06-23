@@ -19,7 +19,6 @@ const CompactTable = ({
   onUpdate,
   onDelete,
   children,
-  background = 'orange'
 }: IColumnsProps) => {
   return (
     <React.Fragment>

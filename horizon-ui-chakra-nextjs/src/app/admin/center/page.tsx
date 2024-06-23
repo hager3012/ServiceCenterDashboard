@@ -6,7 +6,7 @@ import Menu from 'components/menu/MainMenu';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import CompactTable from 'components/common/compact-table/CompactTable';
-import { deleteCenter, getByIdCenter, getCenter } from 'libs/endpoints/center';
+import { getCenter } from 'libs/endpoints/center';
 
 const Page = () => {
   const [Centers, setCenters] = useState<{
@@ -16,27 +16,17 @@ const Page = () => {
   const textColor = useColorModeValue('secondaryGray.900', 'white');
   const router = useRouter();
 
-  const viewCenterDetails = async (id: string) => {
-    router.push(`/admin/center/${id}`);
-  };
-
-  const handleOnEdit = async (id: string) => {
-    await getByIdCenter(id);
+  const handleOnEdit = async (id: number) => {
+    await getCenter();
     router.push(`/admin/center/update/${id}`);
   };
 
-  const handleDelete = async (id: string) => {
-    await deleteCenter(id);
-    loadData();
-    router.push(`/admin/center`);
-  };
 
   const loadData = useCallback(() => {
     getCenter().then((data: any) => {
       if (data) {
         setCenters((prev) => ({
           headers: [
-            {title: 'id', field: 'id' },
             {title: "Name", field: "centerName"},
             {title: "Opening Hours", field: "openingHours"},
             {title: "Specialty", field: "specialty"}          
@@ -100,8 +90,6 @@ const Page = () => {
           <CompactTable
             headers={Centers.headers}
             data={Centers.data}
-            onDelete={handleDelete}
-            onClick={viewCenterDetails}
             onUpdate={handleOnEdit}
           />
         )}
