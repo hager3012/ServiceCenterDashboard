@@ -7,7 +7,7 @@ export interface IColumnsProps {
   hideHeader?: boolean;
   onClick?: (data: any) => void;
   onDelete?: (id: any) => void;
-  onUpdate?: (id: any) => void;
+  onUpdate?: (id: any,type?:any) => void;
   children?:ReactNode;
   background?:string
 }

@@ -1,4 +1,4 @@
-import { IContact, IContactList } from 'types/Contact';
+import { IContact, IContactList, Status } from 'types/Contact';
 import fetchApi from 'utils/baseFetch';
 import { baseUrl } from 'utils/header';
 const Url = `${baseUrl}/Contact`;
@@ -13,6 +13,16 @@ export async function getContact(): Promise<IContactList[]> {
   return Contacts;
 }
 
+/**
+ * retrieves an Contact's information by id.
+ * @param id - the id of the Contact to retrieve.
+ * @returns a promise resolving to an Contact object.
+ */
+export async function getByIdContact(id: string): Promise<IContactList> {
+  const data = await fetchApi<any>(`${Url}/${id}`, "GET");
+  let Branchs = data.value;
+  return Branchs;
+}
 
 /**
  * adds a new Contact to the database.
@@ -22,4 +32,15 @@ export async function getContact(): Promise<IContactList[]> {
 export async function addContact(BodyData: IContact): Promise<string> {
   const data = await fetchApi<any>(Url, "POST", JSON.stringify(BodyData));
   return data.successMessage;
+}
+
+
+/**
+ * update a  Contact to the database.
+ * @param BodyData - the Contact data to be updated.
+ * @returns a promise resolving to a success message upon successful addition.
+ */
+export async function updateContact(contactId: string,status:Status): Promise<string>{
+  const data = await fetchApi<any>(`${Url}/${contactId}/status${status}`, "PUT");
+  return data.successMessage;  
 }
