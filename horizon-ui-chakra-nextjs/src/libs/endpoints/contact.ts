@@ -40,7 +40,7 @@ export async function addContact(BodyData: IContact): Promise<string> {
  * @param BodyData - the Contact data to be updated.
  * @returns a promise resolving to a success message upon successful addition.
  */
-export async function updateContact(contactId: string,status:Status): Promise<string>{
-  const data = await fetchApi<any>(`${Url}/${contactId}/status${status}`, "PUT");
+export async function updateContact(BodyData:IContactList,contactId: string): Promise<string>{
+  const data = await fetchApi<any>(`${Url}/${contactId}}`, "PUT", JSON.stringify(BodyData));
   return data.successMessage;  
 }

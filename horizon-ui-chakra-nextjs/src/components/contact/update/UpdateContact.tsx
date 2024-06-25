@@ -11,20 +11,24 @@ import { getByIdContact, updateContact } from 'libs/endpoints/contact';
 import { enumToArray } from 'utils/enumUtils';
 
 const ContactUpdateForm = ({ id }: { id: string }) => {
-  const [contact, setContact] = useState<IContactList>();
+  const [contact, setContact] = useState<IContactList | undefined>();
   const router = useRouter();
 
   const fetchContact = async () => {
     setContact(await getByIdContact(id));
+    console.log(JSON.stringify(contact));
+    
   };
 
   useEffect(() => {
     fetchContact();
-}, [])
+}, [id])
 
-  const handleSubmit = async (status : Status) => {
-    await updateContact(status,id)
-    router.push('/admin/contact');
+  const handleSubmit = async (formData:any) => {
+    if (contact) {
+      await updateContact(formData,id);
+      router.push('/admin/contact');
+    }
   };
 
   const statusOptions = enumToArray(Status);
@@ -35,7 +39,7 @@ const ContactUpdateForm = ({ id }: { id: string }) => {
     fields: [
       { label: 'Contact Type', name: 'status', inputType: 'select', placeholder: 'Select Contact Type' , options: statusOptions},
     ],
-    
+    data: contact ,
     heading: 'Update Contact',
     onSubmit: handleSubmit,
   };
@@ -46,6 +50,7 @@ const ContactUpdateForm = ({ id }: { id: string }) => {
   disabled={fields.disabled}
   fields={fields.fields}
   heading={fields.heading}
+  data={fields.data}
   onSubmit={handleSubmit}
 ></CompactForm>
   )

@@ -6,7 +6,7 @@ import Menu from 'components/menu/MainMenu';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import CompactTable from 'components/common/compact-table/CompactTable';
-import {  getContact, updateContact } from 'libs/endpoints/contact';
+import {  getByIdContact, getContact, updateContact } from 'libs/endpoints/contact';
 import { Status } from 'types/Contact';
 
 const Page = () => {
@@ -17,9 +17,9 @@ const Page = () => {
   const textColor = useColorModeValue('secondaryGray.900', 'white');
   const router = useRouter();
 
-  const handleOnEdit = async (status:Status,id: string) => {
-    await updateContact(id,status);
-    router.push(`/admin/contact/update/${id}/${status}`);
+  const handleOnEdit = async (id: string) => {
+    await getByIdContact(id);
+    router.push(`/admin/contact/update/${id}`);
   };
 
   
