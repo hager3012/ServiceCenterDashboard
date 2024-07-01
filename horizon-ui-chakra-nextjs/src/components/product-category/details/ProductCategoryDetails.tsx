@@ -31,9 +31,8 @@ const ProductCategoryDetails = ({ id }: { id: string }) => {
     title: 'ProductCategory Details',
     disabled: true,
     fields: [
-        {label: "Name", name: "categoryName", inputType: "text", placeholder: "Name"},
-        {label: "Reference Number", name: "referenceNumber", inputType: "number", placeholder: "Reference Number"}
-    ],
+        {label: "Name", name: "categoryName", inputType: "text", placeholder: "Name"}
+        ],
     heading: 'Back to ProductCategorys',
     data: ProductCategory,
     onSubmit: handleSubmit,

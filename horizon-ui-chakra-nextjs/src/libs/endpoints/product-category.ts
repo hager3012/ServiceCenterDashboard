@@ -9,7 +9,7 @@ const Url = `${baseUrl}/ProductCategory`;
  */
 export async function getProductCategory(): Promise<IProductCategoryList[]> {
   const data = await fetchApi<any>(Url, "GET");
-  let ProductCategorys = data.value;
+  let ProductCategorys = data.value.data;
   return ProductCategorys;
 }
 /**

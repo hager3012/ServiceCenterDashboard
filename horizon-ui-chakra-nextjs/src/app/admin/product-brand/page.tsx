@@ -36,7 +36,6 @@ const Page = () => {
       if (data) {
         setProductBrands((prev) => ({
           headers: [
-            {title: 'id', field: 'id' },
             {title: "Nama", field: "brandName"},
             {title: "Description", field: "brandDescription"},
             {title: "Country of Origin", field: "countryOfOrigin"},

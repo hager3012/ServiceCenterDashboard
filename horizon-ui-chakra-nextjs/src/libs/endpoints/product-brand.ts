@@ -9,7 +9,7 @@ const Url = `${baseUrl}/ProductBrand`;
  */
 export async function getProductBrand(): Promise<IProductBrandList[]> {
   const data = await fetchApi<any>(Url, "GET");
-  let ProductBrands = data.value;
+  let ProductBrands = data.value.data;
   return ProductBrands;
 }
 /**

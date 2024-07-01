@@ -32,7 +32,6 @@ const ProductCategoryUpdateForm = ({ id }: { id: string }) => {
     disabled: false,
     fields: [
         {label: "Name", name: "categoryName", inputType: "text", placeholder: "Name"},
-        {label: "Reference Number", name: "referenceNumber", inputType: "number", placeholder: "Reference Number"}
     ],
    
     heading: 'Update ProductCategory',
