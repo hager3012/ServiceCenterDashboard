@@ -40,7 +40,6 @@ const ProductCategoryDetails = ({ id }: { id: number }) => {
     disabled: true,
     fields: [
         {label: "Name", name: "categoryName", inputType: "text", placeholder: "Name"}
-        // {label: "Name", name: "categoryName", inputType: "text", placeholder: "Name"}
         ],
         dropDownLists :[
           {label: "Brand", name: "brandName", placeholder: "Select Brand", value: "id", displayName:"brandName", data: productBrand },
