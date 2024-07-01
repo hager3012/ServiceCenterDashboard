@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 import { IProductCategory, IProductCategoryList } from 'types/ProductCategory';
 import { getByIdProductCategory, updateProductCategory } from 'libs/endpoints/product-category';
 
-const ProductCategoryUpdateForm = ({ id }: { id: string }) => {
+const ProductCategoryUpdateForm = ({ id }: { id: number }) => {
   const [ProductCategory, setProductCategory] = useState<IProductCategoryList>();
 
   const router = useRouter();
