@@ -30,8 +30,9 @@ const ProductCategoryDetails = ({ id }: { id: number }) => {
     fetchProductBrand();
    }, [])
 
-  const handleSubmit = async (formData: IProductCategoryList) => {
-    AssingProductCategoryToProductBrand(id, formData.id);
+  const handleSubmit = async (formData: any) => {
+    const productBrandId = formData.productBrandId;
+    AssingProductCategoryToProductBrand(id, productBrandId);
     router.push('/admin/product-category');
   };
 
@@ -42,7 +43,7 @@ const ProductCategoryDetails = ({ id }: { id: number }) => {
         {label: "Name", name: "categoryName", inputType: "text", placeholder: "Name"}
         ],
         dropDownLists :[
-          {label: "Brand", name: "brandName", placeholder: "Select Brand", value: "id", displayName:"brandName", data: productBrand },
+          {label: "Brand", name: "productBrandId", placeholder: "Select Brand", value: "id", displayName:"brandName", data: productBrand },
 
         ],
 

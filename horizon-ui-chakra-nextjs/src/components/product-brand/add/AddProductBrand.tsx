@@ -3,6 +3,8 @@ import React, {useState, useEffect } from "react";
 import CompactForm, { IFieldsProps } from "components/common/compact-form/CompactForm";
 import { useRouter } from 'next/navigation';
 import { addProductBrand, getProductBrand } from "libs/endpoints/product-brand";
+import { enumToArray } from "utils/enumUtils";
+import { Country } from "types/Contact";
 
 const AddProductBrand = () => {
     const [ProductBrand, setProductBrand] = useState([]);
@@ -18,6 +20,8 @@ const AddProductBrand = () => {
         let ProductBrands = await getProductBrand();
         setProductBrand(ProductBrands);
     }
+  
+    const countryOptions = enumToArray(Country);
 
     let fields: IFieldsProps = {
         title: "Add ProductBrand",
@@ -25,7 +29,7 @@ const AddProductBrand = () => {
         fields: [
             {label: "Name", name: "brandName", inputType: "text", placeholder: "Name"},
             {label: "Description", name: "brandDescription", inputType: "text", placeholder: "Description"},
-            {label: "Country Of Origin", name: "countryOfOrigin", inputType: "text", placeholder: "Country Of Origin"},
+            {label: "Country Of Origin", name: "countryOfOrigin", inputType: "select", placeholder: "Select Country" , options:countryOptions},
             {label: "Founded Year", name: "foundedYear", inputType: "date", placeholder: "Founded Year"}
         ],
         heading: "Create ProductBrand",

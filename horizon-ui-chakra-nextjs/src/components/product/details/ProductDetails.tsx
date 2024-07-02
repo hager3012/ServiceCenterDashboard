@@ -5,12 +5,12 @@ import { useState, useEffect } from 'react';
 import CompactForm, {
   IFieldsProps,
 } from 'components/common/compact-form/CompactForm';
-import {  IProductList } from 'types/Product';
+import {  IProductById, IProductList } from 'types/Product';
 import { useRouter } from 'next/navigation';
 import { getByIdProduct } from 'libs/endpoints/product';
 
-const ProductDetails = ({ id }: { id: string }) => {
-  const [Product, setProduct] = useState<IProductList>();
+const ProductDetails = ({ id }: { id: number }) => {
+  const [Product, setProduct] = useState<IProductById>();
  
   const router = useRouter();
 
@@ -18,10 +18,6 @@ const ProductDetails = ({ id }: { id: string }) => {
     setProduct(await getByIdProduct(id));
   };
 
- 
-  useEffect(() => {
-    fetchProduct();
-   }, [])
 
   const handleSubmit = async (formData: IProductList) => {
     router.push('/admin/product');
@@ -33,15 +29,14 @@ const ProductDetails = ({ id }: { id: string }) => {
     fields: [
         {label: "Name", name: "productName", inputType: "text", placeholder: "Name"},
         {label: "Description", name: "productDescription", inputType: "text", placeholder: "Description"},
-        {label: "Price", name: "productPrice", inputType: "text", placeholder: "Price"},
+        {label: "Price", name: "productPrice", inputType: "number", placeholder: "Price"},
+        {label: "Stock", name: "productStock", inputType: "number", placeholder: "Stock"},
         {label: "Category", name: "categoryName", inputType: "text", placeholder: "Category"},
-        {label: "Brand", name: "productBrandName", inputType: "text", placeholder: "Brand"},
     ],
     heading: 'Back to Products',
     data: Product,
     onSubmit: handleSubmit,
   };
-
 
   useEffect(() => {
     fetchProduct();

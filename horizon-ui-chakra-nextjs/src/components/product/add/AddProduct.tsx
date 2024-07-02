@@ -3,7 +3,6 @@ import React, {useState, useEffect } from "react";
 import CompactForm, { IFieldsProps } from "components/common/compact-form/CompactForm";
 import { useRouter } from 'next/navigation';
 import { addProduct } from "libs/endpoints/product";
-import { getProductBrand } from "libs/endpoints/product-brand";
 import { getProductCategory } from "libs/endpoints/product-category";
 
 const AddProduct = () => {
@@ -20,10 +19,6 @@ const AddProduct = () => {
         setCategory(Category);
     }
 
-    const fetchBrands = async () => {
-        let Brand = await getProductBrand();
-        setBrand(Brand);
-    }
 
     let fields: IFieldsProps = {
         title: "Add Product",
@@ -31,12 +26,14 @@ const AddProduct = () => {
         fields: [
             {label: "Name", name: "productName", inputType: "text", placeholder: "Name"},
             {label: "Description", name: "productDescription", inputType: "text", placeholder: "Description"},
-            {label: "Price", name: "productPrice", inputType: "number", placeholder: "Price"}
+            {label: "Price", name: "productPrice", inputType: "number", placeholder: "Price"},
+            {label: "Stock", name: "productStock", inputType: "number", placeholder: "Stock"}
         ],
-        dropDownLists:[
-            {label: "Category", name: "productCategoryId", placeholder: "Category", value: "id", displayName: "categoryName", data: Category},
-            {label: "Brand", name: "productBrandId", placeholder: "Brand", value: "id", displayName: "brandName", data: Brand},
-         ],
+        dropDownLists :[
+            {label: "Category", name: "productCategoryId", placeholder: "Select Category", value: "id", displayName:"categoryName", data: Category },
+  
+          ],
+       
         heading: "Create Product",
         onSubmit: handleSubmit,
        
@@ -44,7 +41,6 @@ const AddProduct = () => {
 
       useEffect(() => {
         fetchCategories();
-        fetchBrands();
     },[]);
 
       return (

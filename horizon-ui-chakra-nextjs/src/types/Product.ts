@@ -4,14 +4,18 @@ export interface IProductList
     productName: string,
     productDescription: string,
     productPrice: number,
-    categoryName: string,
-    productBrandName: string
 }
 export interface IProduct
 { 
     productName: string,
     productDescription: string,
+    productStock: number,
     productPrice: number,
     productCategoryId: number,
-    productBrandId: number
+}
+export interface IProductById extends IProductList
+{
+    productStock: number,
+    categoryName: string,
+    productCategoryId: number,
 }

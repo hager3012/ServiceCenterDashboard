@@ -6,15 +6,13 @@ import CompactForm, {
   IFieldsProps,
 } from 'components/common/compact-form/CompactForm';
 import { useRouter } from 'next/navigation';
-import { IProduct, IProductList } from 'types/Product';
+import { IProduct, IProductById, IProductList } from 'types/Product';
 import { getByIdProduct, updateProduct } from 'libs/endpoints/product';
-import { getProductBrand } from 'libs/endpoints/product-brand';
-import { GetCategory } from 'libs/endpoints/item-category';
+import { getProductCategory } from 'libs/endpoints/product-category';
 
-const ProductUpdateForm = ({ id }: { id: string }) => {
-  const [Product, setProduct] = useState<IProductList>();
+const ProductUpdateForm = ({ id }: { id: number }) => {
+  const [Product, setProduct] = useState<IProductById>();
   const [Category, setCategory] = useState([]);
-  const [Brand, setBrand] = useState([]);
   const router = useRouter();
 
   const fetchProduct = async () => {
@@ -22,18 +20,13 @@ const ProductUpdateForm = ({ id }: { id: string }) => {
   };
 
     const fetchCategories = async () => {
-        let Category = await GetCategory();
+        let Category = await getProductCategory();
         setCategory(Category);
     }
 
-    const fetchBrands = async () => {
-        let Brand = await getProductBrand();
-        setBrand(Brand);
-    }
 
     useEffect(() => {
         fetchProduct();
-        fetchBrands();
         fetchCategories();
     }, [])
 
@@ -48,11 +41,12 @@ const ProductUpdateForm = ({ id }: { id: string }) => {
     fields: [
         {label: "Name", name: "productName", inputType: "text", placeholder: "Name"},
         {label: "Description", name: "productDescription", inputType: "text", placeholder: "Description"},
-        {label: "Price", name: "productPrice", inputType: "number", placeholder: "Price"}
+        {label: "Price", name: "productPrice", inputType: "number", placeholder: "Price"},
+        {label: "Stock", name: "productStock", inputType: "number", placeholder: "Stock"}
+
     ],
     dropDownLists:[
       {label: "Category", name: "productCategoryId", placeholder: "Category", value: "id", displayName: "categoryName", data: Category},
-      {label: "Brand", name: "productBrandId", placeholder: "Brand", value: "id", displayName: "brandName", data: Brand},
    ],
     heading: 'Update Product',
     data: Product,

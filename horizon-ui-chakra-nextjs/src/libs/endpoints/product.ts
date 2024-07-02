@@ -1,4 +1,4 @@
-import { IProduct, IProductList } from 'types/Product';
+import { IProduct, IProductById, IProductList } from 'types/Product';
 import fetchApi from 'utils/baseFetch';
 import { baseUrl } from 'utils/header';
 const Url = `${baseUrl}/Product`;
@@ -9,7 +9,7 @@ const Url = `${baseUrl}/Product`;
  */
 export async function getProduct(): Promise<IProductList[]> {
   const data = await fetchApi<any>(Url, "GET");
-  let Products = data.value;
+  let Products = data.value.data;
   return Products;
 }
 /**
@@ -17,7 +17,7 @@ export async function getProduct(): Promise<IProductList[]> {
  * @param id - the id of the Product to delete.
  * @returns a promise resolving to a success message upon successful deletion.
  */
-export async function deleteProduct(id: string): Promise<string> {
+export async function deleteProduct(id: number): Promise<string> {
   const data = await fetchApi<any>(`${Url}/${id}`, "DELETE");
   return data.successMessage;
 }
@@ -26,7 +26,7 @@ export async function deleteProduct(id: string): Promise<string> {
  * @param id - the id of the Product to retrieve.
  * @returns a promise resolving to an Product object.
  */
-export async function getByIdProduct(id: string): Promise<IProductList> {
+export async function getByIdProduct(id: number): Promise<IProductById> {
   const data = await fetchApi<any>(`${Url}/${id}`, "GET");
   let Products = data.value;
   return Products;
@@ -37,7 +37,7 @@ export async function getByIdProduct(id: string): Promise<IProductList> {
  * @param id - the id of the Product to be updated.
  * @returns a promise resolving to a success message upon successful update.
  */
-export async function updateProduct(BodyData: IProduct, id: string): Promise<string> {
+export async function updateProduct(BodyData: IProduct, id: number): Promise<string> {
   const data = await fetchApi<any>(`${Url}/${id}`, "PUT", JSON.stringify(BodyData));
   return data.successMessage;
 }
