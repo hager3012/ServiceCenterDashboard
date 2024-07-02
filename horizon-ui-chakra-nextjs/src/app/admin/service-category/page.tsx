@@ -36,7 +36,6 @@ const Page = () => {
       if (data) {
         setServiceCategorys((prev) => ({
           headers: [
-            {title: 'id', field: 'id' },
             {title: "Name", field: "serviceCategoryName"},
             {title: "Description", field: "serviceCategoryDescription"},       
           ],

@@ -41,7 +41,6 @@ const AddServiceCategory = () => {
         fields={fields.fields} 
         heading={fields.heading}
         data={fields.data}
-        dropDownLists={fields.dropDownLists}
         onSubmit={handleSubmit}>
         </CompactForm>
       
